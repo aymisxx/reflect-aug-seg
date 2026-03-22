@@ -58,7 +58,11 @@ $$ρ̂ = I · R$$
 
 ### 5. Normalization
 
-$ρ_{norm} = (ρ̂ - μ) / σ$ or $ρ_{norm} = (ρ̂ - min) / (max - min)$
+$$ρ_{norm} = (ρ̂ - μ) / σ$$
+
+$$or$$
+
+$$ρ_{norm} = (ρ̂ - min) / (max - min)$$
 
 ### 6. Feature Sets
 
