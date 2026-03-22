@@ -1,6 +1,6 @@
 # 📡 **reflect-aug-seg** 🫧
 
-**Reflectivity-Augmented LiDAR Semantic Segmentation for Robust Robotic Perception**
+**(Reflectivity-Augmented LiDAR Semantic Segmentation for Robust Robotic Perception)**
 
 ## Overview
 
