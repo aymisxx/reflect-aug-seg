@@ -173,6 +173,6 @@ reflect-aug-seg/
 
 ---
 
-## Current Condition: **Under COnstruction**.
+## Current Condition: **Under Construction**.
 
 ---
