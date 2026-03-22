@@ -171,12 +171,12 @@ reflect-aug-seg/
 
 ### **Ayushman Mishra**  
 
-**Personal-Work**: https://aymisxx.github.io  
+**Personal-Work**: https://aymisxx.github.io/  
 **LinkedIn**: https://www.linkedin.com/in/aymisxx/  
 **GitHub-ID**: https://github.com/aymisxx/  
 
 ---
 
-## Current Condition: **Under COnstruction**.
+## Current Condition: **Under Construction**.
 
 ---
