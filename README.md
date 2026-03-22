@@ -165,9 +165,11 @@ reflect-aug-seg/
 
 ## Author
 
-Ayushman Mishra  
-MS Robotics & Autonomous Systems  
-Arizona State University  
+### **Ayushman Mishra**  
+
+**Personal-Work**: https://aymisxx.github.io  
+**LinkedIn**: https://www.linkedin.com/in/aymisxx/  
+**GitHub-ID**: https://github.com/aymisxx/  
 
 ---
 
