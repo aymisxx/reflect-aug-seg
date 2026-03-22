@@ -94,7 +94,7 @@ Range Stability → lower variance is better.
 (Final Phase)  
 
 $$IoU = TP / (TP + FP + FN)$$
-$$mIoU = mean over classes$$
+$$m-IoU = mean-over-classes$$
 
 ## Repository Structure
 
