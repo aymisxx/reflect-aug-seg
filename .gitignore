@@ -4,6 +4,9 @@ __pycache__/
 
 *.so
 
+.label
+.bin
+
 .Python
 build/
 develop-eggs/
