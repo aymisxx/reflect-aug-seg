@@ -495,6 +495,6 @@ Even in the final phase, the safe claim is still:
 
 **Preliminary:** To prove that reflectivity-aware LiDAR analysis works on one frame and a short motion window, with a disciplined semantic glimpse.
 
-**Final (Tentative):** To scale that into a stronger multi-frame semantic scene-understanding pipeline with broader evaluation, better metrics, proxy comparison, failure analysis, and modular engineering structure.
+**Final (Tentative Plan):** To scale that into a stronger multi-frame semantic scene-understanding pipeline with broader evaluation, better metrics, proxy comparison, failure analysis, and modular engineering structure.
 
 ---
