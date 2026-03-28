@@ -13,3 +13,8 @@ tqdm
 
 notebook
 ipywidgets
+
+matplotlib
+imageio
+pillow
+ipython
