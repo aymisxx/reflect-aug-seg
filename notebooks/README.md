@@ -131,7 +131,7 @@ reflect-aug-seg/
 │
 ├── requirements.txt
 │
-├── LICENSE                            # MIT
+├── LICENSE                            # MIT LICENSE
 │
 ├── notebooks/                         # Preliminary Work
 │   ├── artifacts/                     # GIF Plots
@@ -141,6 +141,7 @@ reflect-aug-seg/
 │   ├── 03_multi_frame_reflectivity_over_motion.ipynb
 │   ├── 04_single_frame_semantic_reflectivity_analysis.ipynb
 │   ├── 05_multi_frame_semantic_consistency.ipynb
+│   ├── mid-term-project-report.pdf    # Submission Artifact
 │   └── README.md                      # This File (Prelim README)
 │
 ├── src/                               # Future/Final Work              
