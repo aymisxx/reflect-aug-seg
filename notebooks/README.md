@@ -135,13 +135,13 @@ reflect-aug-seg/
 │
 ├── notebooks/                         # Preliminary Work
 │   ├── artifacts/                     # GIF Plots
-│   ├── notebooks_pdf/                 # Author's Implementation
+│   ├── notebooks_pdf/                 # Author's Implementation Artifacts
 │   ├── 01_load_data.ipynb
 │   ├── 02_single_frame_reflectivity_analysis.ipynb
 │   ├── 03_multi_frame_reflectivity_over_motion.ipynb
 │   ├── 04_single_frame_semantic_reflectivity_analysis.ipynb
 │   ├── 05_multi_frame_semantic_consistency.ipynb
-│   ├── mid-term-project-report.pdf    # Submission Artifact
+│   ├── mid-term-project-report.pdf    # Submission PDF
 │   └── README.md                      # This File (Prelim README)
 │
 ├── src/                               # Future/Final Work              
