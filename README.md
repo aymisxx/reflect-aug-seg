@@ -1,6 +1,6 @@
 # **Reflect-Aug-Seg** 📡🫧
 
-**(Reflectivity-Augmented LiDAR Scene Understanding for Robotic Perception)**
+**(Reflectivity-Augmented LiDAR Semantic Segmentation for Robotic Perception)**
 
 ## Overview
 

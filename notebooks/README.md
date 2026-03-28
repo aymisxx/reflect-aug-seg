@@ -1,6 +1,6 @@
 # **Reflect-Aug-Seg** 📡🫧 (Preliminary Work Notebooks)
 
-**Project theme:** Reflectivity-Augmented LiDAR Scene Understanding for Robotic Perception
+**Project theme:** Reflectivity-Augmented LiDAR Semantic Segmentation for Robotic Perception
 
 This repository studies whether a simple range-aware transformation of LiDAR intensity can serve as a useful complementary cue for semantic scene understanding. The current stage is **preliminary work**, not a final deployable perception system. The aim here is to establish feasibility, inspect behavior honestly, and leave the heavier engineering and evaluation for the final phase.
 
