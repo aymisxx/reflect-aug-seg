@@ -342,6 +342,10 @@ For Notebook 05, class-wise mean profiles across frames are compared using **Spe
 
 # Result discussion
 
+![bev_forward_intensity_vs_pr_30f](../notebooks/assets/notebook03_bev_forward_intensity_vs_pr_30f.gif)
+
+![reflectivity_augmented_semantic_motion_30f_labeled](../notebooks/assets/notebook05_reflectivity_augmented_semantic_motion_30f_labeled.gif)
+
 ## What clearly worked
 
 ### A. Pipeline correctness
