@@ -297,15 +297,15 @@ Run this to:
 - generate semantic visualizations in BEV / FOV style.
 
 ## Notebook 05: `05_multi_frame_semantic_consistency.ipynb`
-**Purpose:** test whether Notebook 04’s class-wise patterns survive motion.
+**Purpose:** test whether Notebook 04’s class-wise patterns survive motion over a short preliminary window.
 
 Run this to:
 
-- compute class-wise statistics over a short multi-frame window.
+- compute class-wise statistics over a 10-frame multi-frame window used for the semantic consistency analysis.
 - keep only temporally persistent classes.
 - measure class-ordering consistency across frames.
 - quantify whether pseudo-reflectivity preserves semantic class structure through motion.
-- generate a labeled reflectivity-augmented semantic GIF.
+- generate a labeled reflectivity-augmented semantic GIF over a separate 30-frame visualization window.
 
 # Mathematical workflow used in the preliminary notebooks
 
@@ -352,7 +352,7 @@ Higher values indicate stronger class separation.
 ## Measure temporal class consistency
 For Notebook 05, class-wise mean profiles across frames are compared using **Spearman rank correlation**. This checks whether the ordering of classes remains stable through motion.
 
-# Result discussion
+# Result Discussion (Preliminary)
 
 **Note**: For author's execution, have a look at all the pdf files in `notebooks_pdf` folder.
 
@@ -369,13 +369,13 @@ The project successfully loaded SemanticKITTI point clouds and labels, verified 
 The proxy $I \cdot R$ is not identical in behavior to raw intensity. It changes distributions, class ordering, and spatial emphasis in a measurable way.
 
 ### C. Single-frame semantic discrimination improved
-On the inspected frame, the proxy improved class separability clearly. That is one of the strongest preliminary findings.
+On the inspected semantic frame, the proxy improved multiclass separability modestly but clearly. In Notebook 04, the Fisher-style score increased from 0.448162 for raw intensity to 0.505541 for pseudo-reflectivity, corresponding to an absolute improvement of 0.057379 and a relative improvement of about 12.8%.
 
 ### D. Temporal stability exists
-The signal does not collapse the moment motion enters the room. Over short windows, it stays smooth, structured, and visually interpretable.
+The signal does not collapse the moment motion enters the room. In Notebook 03, over a 30-frame motion window, pseudo-reflectivity remained numerically stable and visually structured, while still retaining clear range dependence. In particular, the mean correlation between raw intensity and range was -0.206539, whereas the mean correlation between pseudo-reflectivity and range was 0.364621.
 
 ### E. Semantic class structure persists across motion
-The class-wise story is not a one-frame hallucination. Short-window consistency analysis suggests that the semantic ordering is highly stable.
+The class-wise story is not a one-frame hallucination. In Notebook 05, over a 10-frame semantic consistency window, class ordering remained highly stable for both raw intensity and pseudo-reflectivity. The mean Spearman rank correlation versus the average class profile was 0.9534 for raw intensity and 0.9582 for pseudo-reflectivity, indicating a mild short-window consistency advantage for the proxy rather than a dramatic dominance claim.
 
 ## What did **not** get solved
 
@@ -386,7 +386,7 @@ The proxy is still range-dependent. It is not calibrated reflectance, and it can
 At this stage, brightness modulation within semantic structure is being studied. The project is not yet detecting or confidently inferring material categories.
 
 ### C. Global dominance was not shown
-Pseudo-reflectivity is not better than raw intensity in every frame or every scene regime. The motion analysis showed flips in advantage.
+Pseudo-reflectivity is not better than raw intensity in every frame or every scene regime. Notebook 03 showed that its semantic advantage is motion- and scene-dependent rather than uniform: it is stronger in the early part of the 30-frame window, weaker in the middle where raw intensity temporarily becomes more separable, and then positive again later with a milder advantage.
 
 ### D. The current evaluation is still exploratory
 The preliminary stage is built around descriptive statistics, separability metrics, rank consistency, and visualization. That is appropriate for feasibility, but not yet enough for a big final claim.
@@ -395,7 +395,7 @@ The preliminary stage is built around descriptive statistics, separability metri
 
 A clean and honest preliminary conclusion is:
 
-> Initial experiments on SemanticKITTI indicate that a simple range-aware pseudo-reflectivity proxy $(I \cdot R)$ produces a modest but consistent improvement in semantic discriminability relative to raw intensity alone. This effect is visible in single-frame signal statistics, short-window motion analysis, and class-wise semantic inspection. The proxy remains range-dependent and scene-dependent, so it should not be interpreted as true calibrated reflectivity. However, it appears stable and informative enough to justify a broader final-stage study.
+> Initial experiments on SemanticKITTI indicate that a simple range-aware pseudo-reflectivity proxy $(I \cdot R)$ can produce a **modest overall improvement** in semantic discriminability relative to raw intensity alone, but this benefit is **not uniform** across motion or scene composition. The effect is visible in single-frame analysis, short-window motion analysis, and class-wise semantic inspection. The proxy remains range-dependent and scene-dependent, so it should not be interpreted as true calibrated reflectivity. However, it appears stable and informative enough to justify a broader final-stage study.
 
 # Generated artifacts in the preliminary stage
 
@@ -406,83 +406,126 @@ Depending on which notebooks are executed, the preliminary work can produce:
 - class-wise summary tables.
 - temporal plots across selected frame windows.
 - a 30-frame BEV/FOV comparison GIF.
-- a labeled reflectivity-augmented semantic motion GIF.
+- a labeled reflectivity-augmented semantic motion GIF over 30 frames, separate from the 10-frame class-consistency analysis window used in Notebook 05.
 
-# What should be expanded in the final stage
+# What should be expanded in the final work
 
-The final phase should go beyond notebook exploration and build the heavier contribution.
+The preliminary work established that a lightweight range-aware pseudo-reflectivity proxy can produce structured, semantically meaningful behavior on single frames and across short motion windows. The final stage should now move beyond feasibility-style notebook analysis and turn this into a broader, more rigorous, and more robotics-relevant study.
 
-## 1. Broader multi-frame / sequence-level evaluation
+## 1. Broader temporal and sequence-level evaluation
 
-Expand beyond a small temporal window.
+The preliminary phase intentionally used small motion windows to remain disciplined. The final stage should expand this into a more representative temporal study.
 
-Possible final work:
+Possible extensions include:
 
-- analyze many more frames.
-- aggregate results over longer time horizons.
-- compute mean, variance, and trend behavior over larger sequence chunks.
+- analyzing substantially longer frame windows instead of only short preliminary segments,
+- evaluating multiple parts of the sequence rather than a single local region,
+- aggregating signal behavior over longer horizons,
+- measuring how stable the conclusions remain across different scene compositions.
 
-## 2. Proxy comparison
-Right now the preliminary stage uses $I \cdot R$. The final stage should compare lightweight alternatives such as:
+This matters because a useful perception cue should not only work in one short window, but remain interpretable across broader motion and changing environmental structure.
 
-- $I \cdot R$.
-- $I \cdot R^2$.
-- $\log(1 + I \cdot R)$.
-- normalized or clipped variants.
-- robust-scaled versions.
+## 2. Proxy comparison and alternative formulations
 
-## 3. Stronger metrics
+The preliminary phase focused on the simple proxy
 
-Add more mature final-stage metrics such as:
+$$
+\hat{\rho} = I \cdot R
+$$
 
-- per-class separability change.
-- temporal variance of class statistics.
-- intra-class compactness vs inter-class distance.
-- frame-wise distributions of improvement.
-- broader rank-consistency analysis.
+because it is lightweight, easy to compute, and sufficient for feasibility testing. The final stage should test whether this is actually the best practical formulation among other simple range-aware transformations.
 
-## 4. Failure-case analysis
+Possible proxy variants include:
 
-A real final project should not only show wins. It should also inspect where things break.
+- $I \cdot R$,
+- $I \cdot R^2$,
+- $\log(1 + I \cdot R)$,
+- clipped or percentile-normalized variants,
+- robust-scaled versions,
+- per-frame or per-sequence normalized forms.
 
-Possible failure-mode analysis:
+This comparison is important because the current proxy was chosen as a disciplined first probe, not as a guaranteed optimum.
 
-- classes helped strongly.
-- classes helped weakly.
-- classes hurt by the proxy.
-- far-range sparsity effects.
-- class imbalance effects.
-- scene geometry dependence.
+## 3. Stronger and more targeted metrics
 
-## 5. Lightweight downstream usefulness study
+The preliminary evaluation relied on descriptive statistics, Fisher-style separability, temporal trend inspection, and rank-consistency analysis. The final stage should strengthen this with a broader and more diagnostic metric set.
 
-A valuable final addition would be checking whether pseudo-reflectivity helps a simple downstream semantic task.
+Useful final-stage metrics could include:
 
-Examples:
+- per-class separability change,
+- temporal variance of class-wise statistics,
+- intra-class compactness versus inter-class distance,
+- frame-wise gain distributions showing where the proxy helps and where it hurts,
+- rank-consistency analysis across longer windows and more scene regimes,
+- summary statistics over multiple windows rather than single-window snapshots.
 
-- intensity-only vs intensity-plus-proxy feature comparison.
-- lightweight classifier on selected classes.
-- toy semantic ablation study.
+This would make the conclusions less notebook-local and more quantitatively grounded.
 
-## 6. Engineering / modular packaging
+## 4. Failure-case and limitation analysis
 
-The final stage should turn the current notebook work into a cleaner reusable code structure.
+A serious final project should not only emphasize the frames where the proxy looks strong. It should also identify the conditions under which the benefit weakens or reverses.
 
-Possible final deliverable:
+Possible failure-case analysis includes:
 
-- modular preprocessing component.
-- input: point cloud + intensity.
-- output: augmented point cloud + pseudo-reflectivity.
+- classes that are helped strongly,
+- classes that are helped only marginally,
+- classes that are hurt by the proxy,
+- far-range sparsity effects,
+- class imbalance effects,
+- dependence on local scene geometry,
+- motion windows where raw intensity temporarily becomes more useful than the proxy.
 
-That would make the project more robotics-real and less notebook-only.
+This is especially important because the preliminary work already showed that the advantage of pseudo-reflectivity is scene-dependent rather than uniform.
 
-# What remains the honest framing for the final project
+## 5. Surface-sensitive and material-like interpretation
 
-Even in the final phase, the safe claim is still:
+The preliminary phase did **not** attempt material identification, and it should not be presented as doing so. However, one natural final-stage extension is to investigate whether reflectivity-aware cues can support more refined surface interpretation within and across semantic classes.
 
-- reflectivity-aware scene analysis.
-- semantic interpretation through motion.
-- reflectivity-aware temporal scene understanding.
+Possible directions include:
+
+- studying within-class surface variation, such as differences inside road, building, vegetation, or terrain regions,
+- checking whether reflectivity-aware features expose material-like structure more clearly than raw intensity,
+- identifying whether some semantic classes consistently split into more interpretable subgroups under the proxy,
+- testing whether the proxy supports surface-property-sensitive analysis without claiming full material recovery.
+
+This would be a strong extension because it builds directly on the current results while staying scientifically honest.
+
+## 6. Lightweight downstream usefulness study
+
+A valuable final-stage question is whether pseudo-reflectivity is useful not only for analysis, but also as an additional feature in a simple downstream semantic task.
+
+Possible studies include:
+
+- comparing intensity-only features against intensity-plus-proxy features,
+- training a lightweight classifier on selected semantic classes,
+- performing a small semantic ablation study,
+- testing whether the proxy improves separability or classification on carefully chosen subsets.
+
+This would help move the project from “interesting signal analysis” toward “useful perception feature.”
+
+## 7. Engineering and modular packaging
+
+The final stage should also reduce dependence on notebooks by turning the current workflow into a cleaner reusable code structure.
+
+Possible engineering deliverables include:
+
+- a modular preprocessing component,
+- a reusable loader for LiDAR frames and labels,
+- a feature-generation module for pseudo-reflectivity and related variants,
+- a temporal analysis module for multi-frame evaluation,
+- visualization utilities for BEV and forward-view comparisons.
+
+A clean final pipeline could have the following logic:
+
+- **input:** point cloud + raw intensity,
+- **processing:** range computation + reflectivity-aware feature generation,
+- **output:** augmented point cloud with pseudo-reflectivity and analysis-ready summaries.
+
+This would make the project more reproducible, more maintainable, and more robotics-real rather than notebook-only.
+
+## Final-stage objective in one line
+
+The final stage should transform the current preliminary evidence into a broader reflectivity-aware LiDAR scene-understanding study that is temporally stronger, metrically sharper, failure-aware, and more useful for downstream robotic perception.
 
 # Reproducibility notes
 
@@ -491,10 +534,17 @@ Even in the final phase, the safe claim is still:
 - Use fixed visualization ranges for GIF creation so the motion visuals do not become misleading through autoscaling.
 - Execute notebooks in order because the interpretation ladder is intentionally staged.
 
-# One-line summary
+# Academic Context & Acknowledgment
 
-**Preliminary:** To prove that reflectivity-aware LiDAR analysis works on one frame and a short motion window, with a disciplined semantic glimpse.
+This preliminary project was completed as part of **SES 598: Space Robotics & AI** at Arizona State University, under the guidance of **Prof. Jnaneshwar Das**.
 
-**Final (Tentative Plan):** To scale that into a stronger multi-frame semantic scene-understanding pipeline with broader evaluation, better metrics, proxy comparison, failure analysis, and modular engineering structure.
+The course is affiliated with the **Distributed Robotic Exploration and Mapping Systems (DREAMS) Laboratory**
+
+- **DREAMS Lab GitHub:** https://github.com/DREAMS-lab  
+- **DREAMS Lab:** https://deepsig.org/dreamslab  
+
+The overall project framing, evaluation discipline, and robotics context were shaped by the course environment and by broader research themes in robotic perception, exploration, and autonomous systems associated with the course and DREAMS lab.
+
+This work represents the author’s independent preliminary implementation and analysis carried out within that academic setting.
 
 ---
