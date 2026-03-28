@@ -20,6 +20,16 @@ That honesty clause matters. This project does **not** claim physical reflectanc
 
 ---
 
+## Inspiration from Prior Research
+
+This project was directly inspired by the paper **“Reflectivity Is All You Need!: Advancing LiDAR Semantic Segmentation”** by Viswanath, Jiang, and Saripalli (https://arxiv.org/abs/2403.13188). A key idea I took from that work is that raw LiDAR intensity is not a clean surface descriptor by itself, because it is affected by measurement geometry, especially **range** and **incidence angle**, whereas calibrated reflectivity can provide a more consistent and interpretable signal for scene understanding.
+
+The main lesson I carried into this preliminary project was not to claim full reflectivity recovery too early, but to treat reflectivity-style reasoning as a **practical signal-analysis problem**. Since full calibration terms were outside the scope of this stage, I adopted a deliberately lightweight and honest approximation: a **range-aware pseudo-reflectivity proxy**, using $\hat{\rho} = I \cdot R$, to test whether a simple correction of raw intensity could reveal scene structure more clearly than intensity alone.
+
+So, rather than attempting material identification or a full semantic segmentation model in the preliminary phase, this work focuses on a narrower question: **can a simple range-aware augmentation of raw LiDAR intensity make the signal more interpretable for robotic scene understanding?** That idea shaped the design of the current notebooks and will continue into the final stage, where I plan to evaluate the same reflectivity-aware intuition more broadly across time, classes, and stronger downstream analyses. 
+
+---
+
 # What this preliminary stage is trying to prove
 
 The preliminary stage is designed to answer a restrained but meaningful question:
@@ -125,11 +135,13 @@ reflect-aug-seg/
 │
 ├── notebooks/                         # Preliminary Work
 │   ├── artifacts/                     # GIF Plots
+│   ├── notebooks_pdf/                 # Author's Implementation
 │   ├── 01_load_data.ipynb
 │   ├── 02_single_frame_reflectivity_analysis.ipynb
 │   ├── 03_multi_frame_reflectivity_over_motion.ipynb
 │   ├── 04_single_frame_semantic_reflectivity_analysis.ipynb
-│   └── 05_multi_frame_semantic_consistency.ipynb
+│   ├── 05_multi_frame_semantic_consistency.ipynb
+│   └── README.md                      # This File (Prelim README)
 │
 ├── src/                               # Future/Final Work              
 │   ├── io/
@@ -144,7 +156,7 @@ reflect-aug-seg/
 │   └── semantics/
 │       └── semantic_analysis.py
 │
-├── results/                            # Final Work
+├── results/                            # For Final Work
 │
 └── README.md
 ```
@@ -342,6 +354,8 @@ For Notebook 05, class-wise mean profiles across frames are compared using **Spe
 
 # Result discussion
 
+**Note**: For author's execution, have a look at all the pdf files in `notebooks_pdf` folder.
+
 ![bev_forward_intensity_vs_pr_30f](artifacts/notebook03_bev_forward_intensity_vs_pr_30f.gif)
 
 ![reflectivity_augmented_semantic_motion_30f_labeled](artifacts/notebook05_reflectivity_augmented_semantic_motion_30f_labeled.gif)
@@ -383,36 +397,33 @@ A clean and honest preliminary conclusion is:
 
 > Initial experiments on SemanticKITTI indicate that a simple range-aware pseudo-reflectivity proxy $(I \cdot R)$ produces a modest but consistent improvement in semantic discriminability relative to raw intensity alone. This effect is visible in single-frame signal statistics, short-window motion analysis, and class-wise semantic inspection. The proxy remains range-dependent and scene-dependent, so it should not be interpreted as true calibrated reflectivity. However, it appears stable and informative enough to justify a broader final-stage study.
 
-That is the correct preliminary claim. Clean, sharp, and still wearing a seatbelt.
-
 # Generated artifacts in the preliminary stage
 
 Depending on which notebooks are executed, the preliminary work can produce:
 
-- dataset sanity outputs and structural verification logs
-- BEV and FOV single-frame visualizations
-- class-wise summary tables
-- temporal plots across selected frame windows
-- a 30-frame BEV/FOV comparison GIF
-- a labeled reflectivity-augmented semantic motion GIF
-
-These outputs are meant to support the preliminary report and to make the idea defensible with both numbers and visuals.
+- dataset sanity outputs and structural verification logs.
+- BEV and FOV single-frame visualizations.
+- class-wise summary tables.
+- temporal plots across selected frame windows.
+- a 30-frame BEV/FOV comparison GIF.
+- a labeled reflectivity-augmented semantic motion GIF.
 
 # What should be expanded in the final stage
 
 The final phase should go beyond notebook exploration and build the heavier contribution.
 
 ## 1. Broader multi-frame / sequence-level evaluation
+
 Expand beyond a small temporal window.
 
 Possible final work:
 
-- analyze many more frames
-- aggregate results over longer time horizons
-- compute mean, variance, and trend behavior over larger sequence chunks
+- analyze many more frames.
+- aggregate results over longer time horizons.
+- compute mean, variance, and trend behavior over larger sequence chunks.
 
 ## 2. Proxy comparison
-Right now the preliminary stage uses \(I \cdot R\). The final stage should compare lightweight alternatives such as:
+Right now the preliminary stage uses $I \cdot R$. The final stage should compare lightweight alternatives such as:
 
 - $I \cdot R$.
 - $I \cdot R^2$.
@@ -421,6 +432,7 @@ Right now the preliminary stage uses \(I \cdot R\). The final stage should compa
 - robust-scaled versions.
 
 ## 3. Stronger metrics
+
 Add more mature final-stage metrics such as:
 
 - per-class separability change.
@@ -430,6 +442,7 @@ Add more mature final-stage metrics such as:
 - broader rank-consistency analysis.
 
 ## 4. Failure-case analysis
+
 A real final project should not only show wins. It should also inspect where things break.
 
 Possible failure-mode analysis:
@@ -451,9 +464,8 @@ Examples:
 - lightweight classifier on selected classes.
 - toy semantic ablation study.
 
-This would move the project from “looks helpful” to “is helpful”.
-
 ## 6. Engineering / modular packaging
+
 The final stage should turn the current notebook work into a cleaner reusable code structure.
 
 Possible final deliverable:
@@ -461,7 +473,6 @@ Possible final deliverable:
 - modular preprocessing component.
 - input: point cloud + intensity.
 - output: augmented point cloud + pseudo-reflectivity.
-- optional ROS2-style preprocessing node.
 
 That would make the project more robotics-real and less notebook-only.
 
@@ -482,8 +493,8 @@ Even in the final phase, the safe claim is still:
 
 # One-line summary
 
-**Preliminary:** prove that reflectivity-aware LiDAR analysis works on one frame and a short motion window, with a disciplined semantic glimpse.
+**Preliminary:** To prove that reflectivity-aware LiDAR analysis works on one frame and a short motion window, with a disciplined semantic glimpse.
 
-**Final (Tentative):** scale that into a stronger multi-frame semantic scene-understanding pipeline with broader evaluation, better metrics, proxy comparison, failure analysis, and modular engineering structure.
+**Final (Tentative):** To scale that into a stronger multi-frame semantic scene-understanding pipeline with broader evaluation, better metrics, proxy comparison, failure analysis, and modular engineering structure.
 
 ---
