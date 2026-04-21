@@ -90,7 +90,8 @@ def render_forward(frame):
     rgb = build_rgb(sem, refl)
 
     # Perspective-like FPS projection
-    u = y / x
+    # Horizontal sign flipped so physical left appears on screen-left
+    u = -y / x
     v = z / x
 
     fig, ax = plt.subplots(figsize=(6, 4))
