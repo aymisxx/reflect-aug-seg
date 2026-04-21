@@ -54,7 +54,7 @@ LiDAR provides reliable geometry, but its intensity channel is entangled with ra
 
 ### Inspiration from Prior Work
 
-This work is partially inspired by *“Reflectivity Is All You Need”*, which explores the use of calibrated reflectivity as a more informative signal for LiDAR-based semantic understanding.
+This work is partially inspired by *“Reflectivity Is All You Need!”* by Kasi Viswanath, Peng Jiang, and S. Saripalli, which explores the use of calibrated reflectivity as a more informative signal for LiDAR-based semantic understanding.
 
 That paper demonstrates that incorporating reflectivity into learning-based models can improve segmentation performance by providing a more consistent representation than raw intensity.
 
