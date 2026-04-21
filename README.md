@@ -635,8 +635,6 @@ A single medium window (`medium_0`) was used.
 
 ### Interpretation
 
-### Interpretation
-
 The observed **+3.11 percentage-point** improvement comes from a deliberately simple setup, yet it captures a much stronger underlying effect.
 
 The gains are **not uniform across classes**, but they are **highly structured and semantically meaningful**:
