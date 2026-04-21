@@ -156,8 +156,8 @@ The midterm stage established feasibility using **SemanticKITTI sequence 00** an
 ### Midterm baseline (what was established)
 
 - Single-frame semantic separability improved from **0.4482** (raw intensity) to **0.5055** (pseudo-reflectivity)  
-  - Absolute gain: **+0.0574**  
-  - Relative gain: **+12.8%**
+  - Absolute gain: **+ 0.0574**  
+  - Relative gain: **+ 12.8%**
 - Across a short 10-frame window, class-ordering stability remained high:
   - **0.9534** (raw intensity)  
   - **0.9582** (pseudo-reflectivity)
