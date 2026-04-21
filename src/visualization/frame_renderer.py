@@ -60,7 +60,7 @@ def render_bev(frame):
 
 
 # =========================================================
-# 🔥 FORWARD VIEW (FIXED — Cartesian, NOT angular)
+# 🎮 FPS VIEW (ego-centric, front-facing, perspective-like)
 # =========================================================
 
 def render_forward(frame):
@@ -68,20 +68,40 @@ def render_forward(frame):
     sem = frame["semantic_labels"]
     refl = frame["pseudo_reflectivity"]
 
-    rgb = build_rgb(sem, refl)
-
     x = xyz[:, 0]   # forward
+    y = xyz[:, 1]   # left/right
     z = xyz[:, 2]   # height
 
+    # Only keep points in front of the moving agent
+    mask = (
+        (x > 1.0) &
+        (x < 50.0) &
+        (np.abs(y) < 25.0) &
+        (z > -3.0) &
+        (z < 3.0)
+    )
+
+    x = x[mask]
+    y = y[mask]
+    z = z[mask]
+    sem = sem[mask]
+    refl = refl[mask]
+
+    rgb = build_rgb(sem, refl)
+
+    # Perspective-like FPS projection
+    u = y / x
+    v = z / x
+
     fig, ax = plt.subplots(figsize=(6, 4))
-    ax.scatter(x, z, c=rgb, s=0.4)
+    ax.scatter(u, v, c=rgb, s=0.4)
 
-    ax.set_title("Forward View")
-    ax.set_xlabel("X / Forward")
-    ax.set_ylabel("Z / Height")
+    ax.set_title("FPS View")
+    ax.set_xlabel("Horizontal")
+    ax.set_ylabel("Vertical")
 
-    ax.set_xlim(0, 50)
-    ax.set_ylim(-2, 2)
+    ax.set_xlim(-0.8, 0.8)
+    ax.set_ylim(-0.25, 0.25)
 
     return fig
 
@@ -103,19 +123,17 @@ def render_text(frame):
         name = get_class_name(cls)
         color = CLASS_COLORS.get(cls, (0.5, 0.5, 0.5))
 
-        # color box
         ax.add_patch(
             plt.Rectangle(
-                (0.05, y - 0.03),  # x, y
-                0.05,              # width
-                0.05,              # height
+                (0.05, y - 0.03),
+                0.05,
+                0.05,
                 color=color,
                 transform=ax.transAxes,
                 clip_on=False,
             )
         )
 
-        # text
         ax.text(
             0.13,
             y,
