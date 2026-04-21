@@ -631,24 +631,26 @@ A single medium window (`medium_0`) was used.
 |---|---:|
 | `I` only | 0.377925 |
 | `I + I*R` | 0.409025 |
-| Absolute gain | **+0.031100** |
+| Absolute gain | **+ 0.031100** |
 
 ### Interpretation
 
-The observed **+3.11 percentage-point** improvement comes from a deliberately simple setup, yet it captures a much stronger underlying effect.
+The observed **+ 3.11 percentage-point** improvement comes from a deliberately simple setup, yet it captures a much stronger underlying effect.
 
 The gains are **not uniform across classes**, but they are **highly structured and semantically meaningful**:
 
-- **Road (40):** +11.6%  
-- **Sidewalk (48):** +7.6%  
-- **Class 81:** +5.2%  
-- **Building (50):** +0.4%  
+- **Road (40):** + 11.6%  
+- **Sidewalk (48):** + 7.6%  
+- **Class 81:** + 5.2%  
+- **Building (50):** + 0.4%  
 - **Car (10):** small positive gain  
-- **Vegetation (70):** -3.6%
+- **Vegetation (70):** - 3.6%
 
 The most significant improvements occur in **dominant, spatially consistent classes** such as road and sidewalk, which are central to driving scenes. In particular, the **+11.6% gain on the road class** represents a substantial shift in discriminability for one of the most critical semantic categories.
 
 The modest global average reflects a **mixture of strong gains and weaker or negative cases**, rather than weak performance. This aligns with the broader findings of the work: reflectivity-aware augmentation produces **clear benefits in structured, stable regions**, while remaining sensitive to noisy or highly variable classes.
+
+For example, vegetation shows a 3.6% decrease, likely due to its irregular geometry and heterogeneous surface response, where range-aware scaling amplifies intra-class variability and increases overlap with other classes rather than improving separation.
 
 Overall, the result is not a uniform boost, but a **targeted and interpretable improvement pattern**, where the proxy meaningfully enhances key scene elements without introducing artificial uniform gains.
 
@@ -896,7 +898,7 @@ The results are based on the provided CSV artifact generated from a sampled mult
 | Mean separability gain (proxy − raw) | + 0.0436 |
 | Positive-gain frames | 400 / 600 |
 | Negative-gain frames | 200 / 600 |
-| Overall behavior | Structured, non-uniform improvement |
+| Overall behavior | Structured non-uniform improvement |
 
 ### Key observation
 
