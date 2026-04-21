@@ -807,8 +807,9 @@ it produces:
 
 The 60-second run produces:
 
-- `artifacts/final_seq.gif`.
-- `artifacts/final_seq.csv`.
+> `artifacts/final_seq.gif`
+
+> `artifacts/final_seq.csv`
 
 ### CSV columns
 
@@ -842,8 +843,8 @@ The provided CSV is especially useful because it is a concrete, run-level summar
 |---|---:|
 | Mean raw separability | 0.301838 |
 | Mean augmented separability | 0.345452 |
-| Mean delta (`aug - raw`) | **+0.043614** |
-| Relative mean gain vs raw mean | **about +14.45%** |
+| Mean delta (`aug - raw`) | **+ 0.043614** |
+| Relative mean gain vs raw mean | **about + 14.45%** |
 | Positive-gain frames | **400 / 600** |
 | Negative-gain frames | **200 / 600** |
 | Zero-gain frames | 0 |
@@ -852,8 +853,8 @@ The provided CSV is especially useful because it is a concrete, run-level summar
 
 | Case | Frame | Raw | Augmented | Delta |
 |---|---:|---:|---:|---:|
-| Best gain | 000743 | 0.488249 | 0.949593 | **+0.461344** |
-| Worst gain | 000355 | 0.664987 | 0.238274 | **-0.426713** |
+| Best gain | 000743 | 0.488249 | 0.949593 | **+ 0.461344** |
+| Worst gain | 000355 | 0.664987 | 0.238274 | **- 0.426713** |
 
 ### Interpretation of the (author generated) CSV Artifact
 
@@ -898,7 +899,7 @@ The results are based on the provided CSV artifact generated from a sampled mult
 
 | Metric | Value |
 |---|---|
-| Mean separability gain (proxy − raw) | +0.0436 |
+| Mean separability gain (proxy − raw) | + 0.0436 |
 | Positive-gain frames | 400 / 600 |
 | Negative-gain frames | 200 / 600 |
 | Overall behavior | Structured, non-uniform improvement |
