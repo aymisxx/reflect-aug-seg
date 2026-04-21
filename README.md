@@ -1,4 +1,4 @@
-# **Reflect-Aug-Seg**
+# 📡 **Reflect-Aug-Seg** 🔦🫧
 
 ## Reflectivity-Augmented LiDAR Scene Understanding for Robotic Perception
 
@@ -265,11 +265,7 @@ Below is the current repository structure as provided:
 │   ├── 03_multi_frame_reflectivity_over_motion.pdf
 │   ├── 04_single_frame_semantic_reflectivity_analysis.pdf
 │   ├── 05_multi_frame_semantic_consistency.pdf
-│   ├── artifacts
-│   │   ├── notebook03_bev_forward_intensity_vs_pr_30f.gif
-│   │   └── notebook05_reflectivity_augmented_semantic_motion_30f_labeled.gif
-│   ├── mid-term-project-report.pdf
-│   └── README.md
+│   └── mid-term-project-report.pdf
 ├── README.md
 ├── requirements.txt
 ├── scripts
