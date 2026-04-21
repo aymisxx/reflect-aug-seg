@@ -58,7 +58,7 @@ This work is partially inspired by *“Reflectivity Is All You Need”*, which e
 
 That paper demonstrates that incorporating reflectivity into learning-based models can improve segmentation performance by providing a more consistent representation than raw intensity.
 
-This work draws inspiration from that central idea—that reflectivity-related information can enhance LiDAR perception. However, instead of pursuing calibrated reflectivity recovery or integrating it into deep learning pipelines, this work investigates a simpler question: whether a lightweight, range-aware transformation of intensity can reveal similar semantic structure.
+This work draws inspiration from that central idea, that reflectivity-related information can enhance LiDAR perception. However, instead of pursuing calibrated reflectivity recovery or integrating it into deep learning pipelines, this work investigates a simpler question: whether a lightweight, range-aware transformation of intensity can reveal similar semantic structure.
 
 The connection is therefore conceptual rather than methodological, focusing on extracting signal-level insights rather than reproducing a full reflectivity estimation pipeline.
 
@@ -1003,7 +1003,7 @@ The course is affiliated with the **Distributed Robotic Exploration and Mapping 
 
 The overall project framing, evaluation discipline, and technical direction were influenced by the course structure and the broader research themes associated with the DREAMS Lab.
 
-This project aligns with core themes in space robotics, including perception, scene understanding, and mapping under uncertainty. By improving the interpretability of LiDAR signals through lightweight transformations, it contributes to more robust environmental understanding—an essential requirement for autonomous exploration, mapping, and decision-making in resource-constrained and extreme environments.
+This project aligns with core themes in space robotics, including perception, scene understanding, and mapping under uncertainty. By improving the interpretability of LiDAR signals through lightweight transformations, it contributes to more robust environmental understanding, an essential requirement for autonomous exploration, mapping, and decision-making in resource-constrained and extreme environments.
 
 This work represents an independent implementation and analysis carried out within that academic context.
 
