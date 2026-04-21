@@ -1,57 +1,69 @@
-# src/io/sequence_sampler.py
-
-import random
 from pathlib import Path
+import random
 
 
-def get_available_sequences(base_path):
+def list_sequences(dataset_root: Path):
     """
-    Returns list of available sequence folders (e.g., ['00', '01', '02'])
+    Returns available sequence IDs like ['00', '01', '02']
     """
-    base = Path(base_path)
-    sequences = [p.name for p in base.iterdir() if p.is_dir()]
-    return sorted(sequences)
+    seq_root = dataset_root / "sequences"
+    return sorted([p.name for p in seq_root.iterdir() if p.is_dir()])
 
 
-def get_frame_ids(sequence_path):
+def list_frames(sequence_path: Path):
     """
-    Returns sorted frame IDs (strings) from velodyne folder
+    Returns sorted frame IDs like ['000000', '000001', ...]
     """
-    velodyne_dir = Path(sequence_path) / "velodyne"
-    frame_ids = sorted([f.stem for f in velodyne_dir.glob("*.bin")])
-    return frame_ids
+    velodyne_dir = sequence_path / "velodyne"
+    return sorted([p.stem for p in velodyne_dir.glob("*.bin")])
 
 
-def sample_continuous_sequence(base_path, duration_sec=60, fps=10):
+def sample_contiguous_window(
+    dataset_root: Path,
+    window_size: int,
+    allowed_sequences=None
+):
     """
-    Randomly selects:
-    - a sequence (00, 01, 02)
-    - a continuous chunk of frames
+    Randomly:
+    1. pick a sequence (restricted if provided)
+    2. pick a valid continuous window
+
+    Args:
+        dataset_root: Path to SemanticKITTI dataset root
+        window_size: number of frames required
+        allowed_sequences: list like ['00','01','02'] (optional)
 
     Returns:
-    - sequence_path
-    - selected_frame_ids (list)
+        sequence_id (str)
+        frame_ids (list[str])
     """
 
-    # Step 1: pick random sequence
-    sequences = get_available_sequences(base_path)
-    chosen_seq = random.choice(sequences)
+    # --- Step 1: discover sequences ---
+    all_sequences = list_sequences(dataset_root)
 
-    sequence_path = Path(base_path) / chosen_seq
+    # --- Step 2: restrict if needed ---
+    if allowed_sequences is not None:
+        sequences = [s for s in all_sequences if s in allowed_sequences]
+    else:
+        sequences = all_sequences
 
-    # Step 2: get all frames
-    frame_ids = get_frame_ids(sequence_path)
-    N = len(frame_ids)
+    if len(sequences) == 0:
+        raise ValueError("No valid sequences found")
 
-    # Step 3: compute required frames
-    T = duration_sec * fps
+    # --- Step 3: pick random sequence ---
+    seq_id = random.choice(sequences)
+    sequence_path = dataset_root / "sequences" / seq_id
 
-    if T >= N:
-        raise ValueError(f"Requested {T} frames, but only {N} available.")
+    # --- Step 4: get frames ---
+    frames = list_frames(sequence_path)
 
-    # Step 4: random start index
-    start_idx = random.randint(0, N - T)
+    if len(frames) < window_size:
+        raise ValueError(f"Sequence {seq_id} too short for window size {window_size}")
 
-    selected_frames = frame_ids[start_idx:start_idx + T]
+    # --- Step 5: sample contiguous window ---
+    max_start = len(frames) - window_size
+    start_idx = random.randint(0, max_start)
 
-    return sequence_path, selected_frames
+    selected_frames = frames[start_idx : start_idx + window_size]
+
+    return seq_id, selected_frames
