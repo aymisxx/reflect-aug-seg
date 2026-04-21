@@ -38,10 +38,10 @@ def sample_contiguous_window(
         frame_ids (list[str])
     """
 
-    # --- Step 1: discover sequences ---
+    # Step 1: discover sequences
     all_sequences = list_sequences(dataset_root)
 
-    # --- Step 2: restrict if needed ---
+    # Step 2: restrict if needed
     if allowed_sequences is not None:
         sequences = [s for s in all_sequences if s in allowed_sequences]
     else:
@@ -50,17 +50,17 @@ def sample_contiguous_window(
     if len(sequences) == 0:
         raise ValueError("No valid sequences found")
 
-    # --- Step 3: pick random sequence ---
+    # Step 3: pick random sequence
     seq_id = random.choice(sequences)
     sequence_path = dataset_root / "sequences" / seq_id
 
-    # --- Step 4: get frames ---
+    # Step 4: get frames
     frames = list_frames(sequence_path)
 
     if len(frames) < window_size:
         raise ValueError(f"Sequence {seq_id} too short for window size {window_size}")
 
-    # --- Step 5: sample contiguous window ---
+    # Step 5: sample contiguous window
     max_start = len(frames) - window_size
     start_idx = random.randint(0, max_start)
 

@@ -4,10 +4,7 @@ import matplotlib.pyplot as plt
 from src.semantics.label_map import get_class_name
 from src.semantics.class_stats import compute_class_percentages, get_top_k_classes
 
-
-# =========================================================
-# 🎨 COLORS
-# =========================================================
+# COLORS
 
 CLASS_COLORS = {
     40: (1.0, 0.0, 1.0),   # road
@@ -19,10 +16,7 @@ CLASS_COLORS = {
     72: (0.5, 0.4, 0.2),   # terrain
 }
 
-
-# =========================================================
-# 🔆 REFLECTIVITY
-# =========================================================
+# REFLECTIVITY
 
 def normalize(values, vmin=0.0, vmax=20.0):
     values = np.clip(values, vmin, vmax)
@@ -39,10 +33,7 @@ def build_rgb(sem, refl):
 
     return rgb
 
-
-# =========================================================
-# 📍 BEV (unchanged)
-# =========================================================
+# BEV
 
 def render_bev(frame):
     xyz = frame["xyz"]
@@ -58,10 +49,7 @@ def render_bev(frame):
 
     return fig
 
-
-# =========================================================
-# 🎮 FPS VIEW (ego-centric, front-facing, perspective-like)
-# =========================================================
+# FPS VIEW (ego-centric, front-facing, perspective-like)
 
 def render_forward(frame):
     xyz = frame["xyz"]
@@ -106,10 +94,7 @@ def render_forward(frame):
 
     return fig
 
-
-# =========================================================
-# 📊 TEXT PANEL
-# =========================================================
+# TEXT PANEL
 
 def render_text(frame):
     class_pct = compute_class_percentages(frame["semantic_labels"])
@@ -148,10 +133,7 @@ def render_text(frame):
 
     return fig
 
-
-# =========================================================
-# 🧱 FIG → IMAGE (FIXED SAFE)
-# =========================================================
+# FIG → IMAGE (FIXED SAFE)
 
 def fig_to_img(fig):
     fig.canvas.draw()
@@ -160,10 +142,7 @@ def fig_to_img(fig):
     plt.close(fig)
     return img
 
-
-# =========================================================
-# 🚫 NO BLACK PADDING — WHITE BACKGROUND
-# =========================================================
+# NO BLACK PADDING - WHITE BACKGROUND
 
 def pad(img, H):
     if img.shape[0] == H:
@@ -174,10 +153,7 @@ def pad(img, H):
 
     return np.vstack([img, white])
 
-
-# =========================================================
-# 🎬 FINAL FRAME
-# =========================================================
+# FINAL FRAME
 
 def render_frame(frame):
     bev = fig_to_img(render_bev(frame))

@@ -3,17 +3,13 @@ import time
 import argparse
 from pathlib import Path
 
-# =========================================================
-# 🧭 MAKE PROJECT ROOT IMPORTABLE
-# =========================================================
+# MAKE PROJECT ROOT IMPORTABLE
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-# =========================================================
-# 📦 IMPORTS
-# =========================================================
+# IMPORTS
 
 from src.io.sequence_sampler import sample_contiguous_window
 from src.io.loader import load_frame
@@ -24,10 +20,7 @@ from src.animation.gif_writer import save_gif
 from src.metrics.separability import fisher_separability
 from src.metrics.csv_logger import init_csv, append_row
 
-
-# =========================================================
-# 🚀 MAIN PIPELINE
-# =========================================================
+# MAIN PIPELINE
 
 def run_pipeline(dataset_root, fps, duration, allowed_sequences, output_gif):
     window = fps * duration
@@ -91,10 +84,7 @@ def run_pipeline(dataset_root, fps, duration, allowed_sequences, output_gif):
     print("CSV:", csv_path)
     print(f"Time: {total_time/60:.2f} min")
 
-
-# =========================================================
-# 🧠 CLI ENTRYPOINT
-# =========================================================
+# CLI ENTRYPOINT
 
 def main():
     parser = argparse.ArgumentParser(
