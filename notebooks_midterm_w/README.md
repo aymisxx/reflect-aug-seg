@@ -97,72 +97,9 @@ This is a heuristic range-aware feature. It is computationally cheap, easy to co
 
 # Dataset used
 
-The preliminary work uses **SemanticKITTI**, specifically **sequence 00** arranged under:
+The preliminary work uses **SemanticKITTI**, specifically **sequence 00**.:
 
-```text
-reflect-aug-seg/
-├── data
-│   └── semantickitti_subset
-│     └── dataset
-│       └── sequences
-│         └── 00                # Just one sequence for prelim.
-│           ├── calib.txt
-│           ├── labels
-│           . ├── 000000.label
-│           . ├── 000001.label
-│           . ├── 000002.label
-│           . ├── 000003.label
-│           . .
-│           . .
-│           . .
-│           . ├── 004539.label
-│           . └── 004540.label
-│           ├── poses.txt
-│           └── velodyne
-│           . ├── 000000.bin
-│           . ├── 000001.bin
-│           . ├── 000002.bin │
-│           . .
-│           . .
-│           . .
-│           . ├── 004539.bin
-│           . └── 004540.bin
-│           └── times.txt
-│
-├── requirements.txt
-│
-├── LICENSE                            # MIT LICENSE
-│
-├── notebooks/                         # Preliminary Work
-│   ├── artifacts/                     # GIF Plots
-│   ├── notebooks_pdf/                 # Author's Implementation Artifacts
-│   ├── 01_load_data.ipynb
-│   ├── 02_single_frame_reflectivity_analysis.ipynb
-│   ├── 03_multi_frame_reflectivity_over_motion.ipynb
-│   ├── 04_single_frame_semantic_reflectivity_analysis.ipynb
-│   ├── 05_multi_frame_semantic_consistency.ipynb
-│   ├── mid-term-project-report.pdf    # Submission PDF
-│   └── README.md                      # This File (Prelim README)
-│
-├── src/                               # Future/Final Work              
-│   ├── io/
-│   │   └── loader.py
-│   ├── features/
-│   │   └── pseudo_reflectivity.py
-│   ├── visualization/
-│   │   ├── first_person.py
-│   │   └── top_view.py
-│   ├── temporal/
-│   │   └── sequence_processor.py
-│   └── semantics/
-│       └── semantic_analysis.py
-│
-├── results/                            # For Final Work
-│
-└── README.md
-```
-
-Expected files and folders inside `sequences/00`:
+Expected data files and folders inside `sequences/00`:
 
 - `velodyne/`
 - `labels/`
