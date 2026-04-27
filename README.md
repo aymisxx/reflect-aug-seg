@@ -1,4 +1,4 @@
-# 📡 **Reflect-Aug-Seg** 🔦🫧
+# **Reflect-Aug-Seg**
 
 ## Reflectivity-Augmented LiDAR Scene Understanding for Robotic Perception
 
