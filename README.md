@@ -309,6 +309,9 @@ Entry-point scripts for artifact generation and reproducible execution.
 #### `artifacts/`
 Final generated outputs, including the provided 60-second GIF and its matching CSV log.
 
+#### `reports/`
+Project reports for both midterm (preliminary) work, and final work.
+
 ---
 
 ## Dataset
