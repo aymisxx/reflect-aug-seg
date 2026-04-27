@@ -268,6 +268,9 @@ Below is the current repository structure as provided:
 │   └── mid-term-project-report.pdf
 ├── README.md
 ├── requirements.txt
+├── reports
+│   ├── prelim_report.pdf
+│   └── final_report.pdf
 ├── scripts
 │   ├── generate_gif.py
 │   └── run_command_60_sec.txt
