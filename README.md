@@ -2,9 +2,7 @@
 
 ## Reflectivity-Augmented LiDAR Scene Understanding for Robotic Perception
 
-> **Author:** Ayushman Mishra  
-> **Course:** SES 598: Space Robotics & A.I.  
-> **Institution:** Arizona State University
+> **Author:** Ayushman Mishra
 
 ---
 
